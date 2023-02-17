@@ -1,6 +1,8 @@
 import React from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 
-const Navbar = () => {
+const Navbar = (props) => {
   return (
 
     <>
@@ -12,6 +14,11 @@ const Navbar = () => {
       <div className="navbar-nav">
         <a className="nav-link" href="#">Features</a>
         <a className="nav-link" href="#">Features</a>
+
+      </div>
+      <div className='addtocart'>
+      <FontAwesomeIcon icon={faCartShopping} className="icon"/>
+      <p className='counting-number'>{props.numb}</p>
       </div>
   </div>
 </nav>

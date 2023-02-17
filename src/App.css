@@ -39,3 +39,35 @@
   border: 1px solid rgb(164, 38, 137);
   height: 83vh;
 }
+.makehover{
+  position: relative;
+}
+ .makehover::after{
+  position: absolute; 
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  content: "Add TO Cart";
+  font-size: calc(12px + .6vw);
+  color: white;
+  width: 100%;
+  cursor: pointer;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0,.8);
+}
+.makehover:hover.makehover::after{
+  opacity: 1;
+}
+.addtocart{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 5px;
+  width: 3%;
+}
+.counting-number{
+ color: red;
+}

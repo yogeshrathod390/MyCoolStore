@@ -5,7 +5,7 @@ import Navbar from './Components/Navbar';
 
 
 function App() {
-
+  const [count,setCount]=useState(0)
   let Matrial="https://api.sheety.co/af35b536915ec576818d468cf2a6505c/reactjsTest/material";
   let Colors="https://api.sheety.co/af35b536915ec576818d468cf2a6505c/reactjsTest/colors";
   
@@ -39,15 +39,14 @@ function App() {
       });
   }, []);
 
-  // console.log(users, posts);
-
- 
-  console.log(data1.colors);
-  console.log(data2);
+  function counta(){
+    setCount(count + 1)
+    console.log("this",count)
+  }
   return (
     <div className="App">
      <h1  style={{fontSize: "20px", textAlign: "center", padding:"30px"}} >MYCOOLSHOP.COM</h1>
-     <Navbar/>
+     <Navbar numb={count}/>
      <div className="main-container-product-sidebar">
      <div className="side-bar">
       <h5>Tags</h5>
@@ -83,7 +82,7 @@ function App() {
 
      </div>
      <div className="product-frame">
-     <MainCard/>
+     <MainCard counting={counta}/>
      </div>
      </div>
     </div>

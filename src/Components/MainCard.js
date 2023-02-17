@@ -1,14 +1,9 @@
 import React, { useState, useEffect } from "react";
 
-const MainCard = () => {
-  // let matrial={martial:[
-
-  // ]}
+const MainCard = (props) => {
+ 
   const [data, SetData] = useState([]);
   async function calldata() {
-   
-    let matrial="https://api.sheety.co/af35b536915ec576818d468cf2a6505c/reactjsTest/material";
-    let Colors="https://api.sheety.co/af35b536915ec576818d468cf2a6505c/reactjsTest/colors";
     let Prod="https://api.sheety.co/af35b536915ec576818d468cf2a6505c/reactjsTest/products";
     const data = await fetch(Prod,
       {
@@ -21,13 +16,13 @@ const MainCard = () => {
     );
     const responce = await data.json();
     SetData(responce)
-    console.log(responce);
+    // console.log(responce);
   }
   useEffect(() => {
     calldata();
   }, []);
-  console.log("this",data)
-  console.log("Lengyh",data.products)
+ 
+  // console.log("Lengyh",data.products)
   return (<>
     <div className="main-container-products row">
       {data.products && data.products.map((element) => {
@@ -37,12 +32,12 @@ const MainCard = () => {
                 <div className="col-md-4" key={element.id}>
                 {/* <Cards imageUrl={element.image} /> */}
                 <div className='container my-4'>
-                  <div className="card" >
+                  <div className="card makehover" onClick={()=>props.counting()} >
                     <img src={element.image} className="card-img-top" alt="..." />
                     <div className="card-body">
                       <h5 className="card-title">{element.name}</h5>
                       <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="/" className="btn btn-primary">Go somewhere</a>
+                      {/* <a href="/" className="btn btn-primary">Go somewhere</a> */}
                       <p className="price-product">INR {element.price}</p>
                     </div>
                   </div>
