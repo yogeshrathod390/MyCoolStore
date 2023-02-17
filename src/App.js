@@ -13,48 +13,36 @@ function App() {
 
   const [data1, setData1] = useState([]);
   const [data2, setData2] = useState([]);
-  async function calldata3() {
-   
-    const data = await fetch(Matrial,
-      {
-        headers: {
-          Authorization:'Bearer Ex9yLyRU7wvyxfblpq5HAhfQqUP1vIyo',
-         
-          "Content-Type":"application/json"
-        },
-      }
-    );
-    const responce = await data.json();
-      setData1(responce)
-   
-   
-  }
+ 
 
-  async function calldata4() {
-   
-    const data = await fetch(Colors,
-      {
+  
+  useEffect(() => {
+    Promise.all([
+      fetch(Colors, {
         headers: {
           Authorization:'Bearer Ex9yLyRU7wvyxfblpq5HAhfQqUP1vIyo',
-         
-          "Content-Type":"application/json"
-        },
-      }
-    );
-    const responce = await data.json();
-      setData2(responce)
-   
-   
-  }
-useEffect(
-  ()=>{
-    calldata4();
-    calldata3();
-  },[]
-)
+          "Content-Type":"application/json" },
+      }),
+      fetch(Matrial, {
+        headers: {
+          Authorization:'Bearer Ex9yLyRU7wvyxfblpq5HAhfQqUP1vIyo',
+          "Content-Type":"application/json" },
+      }),
+    ])
+      .then(([resCol, resMat]) => 
+        Promise.all([resCol.json(), resMat.json()])
+      )
+      .then(([dataCol, dataMat]) => {
+        setData1(dataCol);
+        setData2(dataMat);
+        // setCombinedData(dataCol.concat(dataMat));
+      });
+  }, []);
+
+  // console.log(users, posts);
 
  
-  console.log(data1);
+  console.log(data1.colors);
   console.log(data2);
   return (
     <div className="App">
@@ -72,7 +60,7 @@ useEffect(
       <ul>
         <li>ALL</li>
         {
-          data1.material?.map(
+          data2.material?.map(
             (item,i)=>{
               return (<li key={i}>{item.name}</li>)
             }
@@ -85,7 +73,7 @@ useEffect(
       <ul>
         <li>ALL</li>
         {
-         data2.colors?.map(
+         data1.colors?.map(
             (item,i)=>{
               return (<li key={i}>{item.name}</li>)
             }
