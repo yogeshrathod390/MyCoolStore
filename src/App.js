@@ -1,16 +1,61 @@
+import { useEffect ,useState} from 'react';
 import './App.css';
 import MainCard from './Components/MainCard';
 import Navbar from './Components/Navbar';
-import useFetch from "./Components/Usefetch";
+
 
 function App() {
-  const [col] = useFetch("https://api.sheety.co/af35b536915ec576818d468cf2a6505c/reactjsTest/colors");
-  const [mat] = useFetch("https://api.sheety.co/af35b536915ec576818d468cf2a6505c/reactjsTest/material");
-  const [data] = useFetch("");
-   console.log(col.colors)
-  // console.log(mat.material)
-  console.log(col)
-  console.log(mat)
+
+  let Matrial="https://api.sheety.co/af35b536915ec576818d468cf2a6505c/reactjsTest/material";
+  let Colors="https://api.sheety.co/af35b536915ec576818d468cf2a6505c/reactjsTest/colors";
+  
+
+
+  const [data1, setData1] = useState([]);
+  const [data2, setData2] = useState([]);
+  async function calldata3() {
+   
+    const data = await fetch(Matrial,
+      {
+        headers: {
+          Authorization:'Bearer Ex9yLyRU7wvyxfblpq5HAhfQqUP1vIyo',
+         
+          "Content-Type":"application/json"
+        },
+      }
+    );
+    const responce = await data.json();
+      setData1(responce)
+   
+   
+  }
+
+  async function calldata4() {
+   
+    const data = await fetch(Colors,
+      {
+        headers: {
+          Authorization:'Bearer Ex9yLyRU7wvyxfblpq5HAhfQqUP1vIyo',
+         
+          "Content-Type":"application/json"
+        },
+      }
+    );
+    const responce = await data.json();
+      setData2(responce)
+   
+   
+  }
+useEffect(
+  ()=>{
+    calldata4();
+    calldata3();
+  },[]
+)
+
+ 
+  console.log(data1);
+  console.log(data2);
   return (
     <div className="App">
      <h1  style={{fontSize: "20px", textAlign: "center", padding:"30px"}} >MYCOOLSHOP.COM</h1>
@@ -27,7 +72,7 @@ function App() {
       <ul>
         <li>ALL</li>
         {
-          mat.material?.map(
+          data1.material?.map(
             (item,i)=>{
               return (<li key={i}>{item.name}</li>)
             }
@@ -40,7 +85,7 @@ function App() {
       <ul>
         <li>ALL</li>
         {
-          col.colors?.map(
+         data2.colors?.map(
             (item,i)=>{
               return (<li key={i}>{item.name}</li>)
             }
