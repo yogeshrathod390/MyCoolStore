@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/MyCoolStore/static/css/main.a6527c4c.css",
+    "main.js": "/MyCoolStore/static/js/main.769928ee.js",
+    "static/js/787.378c02ac.chunk.js": "/MyCoolStore/static/js/787.378c02ac.chunk.js",
+    "index.html": "/MyCoolStore/index.html",
+    "main.a6527c4c.css.map": "/MyCoolStore/static/css/main.a6527c4c.css.map",
+    "main.769928ee.js.map": "/MyCoolStore/static/js/main.769928ee.js.map",
+    "787.378c02ac.chunk.js.map": "/MyCoolStore/static/js/787.378c02ac.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a6527c4c.css",
+    "static/js/main.769928ee.js"
+  ]
+}
